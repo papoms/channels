@@ -22,6 +22,25 @@ class SignalMessage
     public $message;
 
     /**
+    *
+    * The phone number of the recipient.
+    * Must include prefix ("+") and country code.
+    *
+    * @var string
+    **/
+    public $recipient;
+
+    /**
+    *
+    * The group to send to
+    * can be found with signal-cli listGroups
+    * example "Hwi6toUb6T5Xa63e8Dc21PqfE3kCxTO0FIR8hZbClkM="
+    *
+    * @var string
+    **/
+    public $group;
+
+    /**
     * Create a new message instance.
     *
     * @param  string $message
@@ -30,7 +49,7 @@ class SignalMessage
     */
     public static function create(string $message = '')
     {
-      return new static(string $message);
+      return new static($message);
     }
 
     /**
@@ -38,9 +57,9 @@ class SignalMessage
     *
     * @param  string  $message
     */
-    public function __construct(string $message = '')
+    public function __construct($message = '')
     {
-      $this->message = string $message;
+      $this->message = $message;
     }
 
     /**
@@ -52,7 +71,7 @@ class SignalMessage
     */
     public function message(string $message)
     {
-      $this->message = string $message;
+      $this->message = $message;
 
       return $this;
     }
@@ -66,17 +85,24 @@ class SignalMessage
     */
     public function recipient(string $recipient)
     {
-      $this->recipient = string $recipient;
+      $this->recipient = $recipient;
 
       return $this;
     }
 
-    /**
+     /**
+    * Set the Group ID the message should be sent to.
     *
-    * The phone number of the recipient.
-    * Must include prefix ("+") and country code.
+    * @param  string  $group
     *
-    * @var string
-    **/
-    public $recipient;
+    * @return $this
+    */
+    public function group(string $group)
+    {
+      $this->group = $group;
+
+      return $this;
+    }
+
+
 }

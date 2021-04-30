@@ -11,5 +11,5 @@ return [
  /**
  * Path to signal_cli binary file
  **/
-  'signal_cli' => env('SIGNAL_CLI_LOCATION'),
-]
+  'signal_cli' => env('SIGNAL_CLI_LOCATION')
+];

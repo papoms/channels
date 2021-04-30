@@ -9,6 +9,12 @@
             "email": "cjbarlow@protonmail.com",
             "homepage": "https://github.com/laravel-notification-channels/signal",
             "role": "Developer"
+        },
+        {
+            "name": "Paul Porzky-Leibold",
+            "email": "porzky@gmail.com",
+            "homepage": "https://github.com/papoms/channels",
+            "role": "Developer"
         }
     ],
     "require": {

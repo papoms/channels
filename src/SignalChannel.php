@@ -30,16 +30,31 @@ class SignalChannel
         $collection = collect($notification->toSignal($notifiable));
 
         $recipient = $collection->get('recipient');
-        $message = $collection->get('message');
+        $group     = $collection->get('group');
+        $message    = $collection->get('message');
+
+
+        $command = [
+            config('signal-notification-channel.signal_cli'),
+            '--username',  config('signal-notification-channel.username'),
+            'send', '--message',$message,
+        ];
+
+        // Send to group if group is provided
+        // Else send to single recipient
+        if ($group){
+            $command[] = '--group';
+            $command[] = $group;
+        } else {
+            $command[] = $recipient;
+        }
+
 
         //Run signal-cli via Symfony Process.
         $result = new Process(
-            [config('signal-notification-channel.signal_cli'),
-            '--username',config('signal-notification-channel.username'),
-            'send','--message',$message,
-            $recipient],
-            //Pass JAVA_HOME to Symfony so signal-cli can run.
+            $command,
             null,
+            //Pass JAVA_HOME to Symfony so signal-cli can run.
             ['JAVA_HOME' => config('signal-notification-channel.java_location')]
         );
 
