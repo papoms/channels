@@ -104,5 +104,18 @@ class SignalMessage
       return $this;
     }
 
+     /**
+    * Set the username the message should be sent from.
+    *
+    * @param  string  $group
+    *
+    * @return $this
+    */
+    public function username(string $username)
+    {
+      $this->username = $username;
+
+      return $this;
+    }
 
 }

@@ -29,14 +29,15 @@ class SignalChannel
     {
         $collection = collect($notification->toSignal($notifiable));
 
-        $recipient = $collection->get('recipient');
-        $group     = $collection->get('group');
+        $recipient  = $collection->get('recipient');
+        $group      = $collection->get('group');
         $message    = $collection->get('message');
+        $username    = $collection->get('username');
 
 
         $command = [
             config('signal-notification-channel.signal_cli'),
-            '--username',  config('signal-notification-channel.username'),
+            '--username',  $username,
             'send', '--message',$message,
         ];
 
