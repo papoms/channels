@@ -40,6 +40,14 @@ class SignalMessage
     **/
     public $group;
 
+     /**
+    *
+    * The attachement to be send
+    *
+    * @var string
+    **/
+    public $attachment;
+
     /**
     * Create a new message instance.
     *
@@ -47,10 +55,10 @@ class SignalMessage
     *
     * @return static string
     */
-    public static function create(string $message = '')
-    {
-      return new static($message);
-    }
+    // public static function create(string $message = '')
+    // {
+    //   return new static($message);
+    // }
 
     /**
     * Create a new message instance.
@@ -114,6 +122,20 @@ class SignalMessage
     public function username(string $username)
     {
       $this->username = $username;
+
+      return $this;
+    }
+
+     /**
+    * Set the username the message should be sent from.
+    *
+    * @param  string  $group
+    *
+    * @return $this
+    */
+    public function attachment(string $attachment)
+    {
+      $this->attachment = $attachment;
 
       return $this;
     }

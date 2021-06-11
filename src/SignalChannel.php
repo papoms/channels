@@ -33,13 +33,25 @@ class SignalChannel
         $group      = $collection->get('group');
         $message    = $collection->get('message');
         $username    = $collection->get('username');
+        $attachment    = $collection->get('attachment');
 
 
         $command = [
             config('signal-notification-channel.signal_cli'),
             '--username',  $username,
-            'send', '--message',$message,
+            'send'
         ];
+
+        if ($message){
+            $command[] = '--message';
+            $command[] = $message;
+
+        }
+
+        if ($attachment){
+            $command[] = '-a';
+            $command[] = $attachment;
+        }
 
         // Send to group if group is provided
         // Else send to single recipient
